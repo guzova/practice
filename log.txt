@@ -1,0 +1,11 @@
+commit 4344996c30e5c0373b922b0e04df70749647c4e8
+Author: GuzovaDasha <dashulia.gu@gmail.com>
+Date:   Thu Feb 9 15:52:40 2017 +0300
+
+    add status.txt
+
+commit 568f66332d274ffce816ff509fe97ada402f0755
+Author: GuzovaDasha <dashulia.gu@gmail.com>
+Date:   Thu Feb 9 15:49:50 2017 +0300
+
+    add .gitignore
