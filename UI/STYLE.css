@@ -1,0 +1,431 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+body{
+    align-items: center;
+    align-self: center;
+    background-image: url(http://ramki-vsem.ru/fony/fon_121.jpg);
+    background-attachment: scroll;
+    background-size: cover;
+}
+.title{
+    font-size: 250%;
+    font-family: 'Arizonia';
+    text-align: center;
+    align-self: center;
+    margin-left: 1%;
+    margin-right: 1%;
+    height: 8%;
+    background-color: rgba(230,191,255,0.5);
+    border: 1px solid rgb(255,204,128);
+    margin-bottom: 1%;
+}
+.rectangles {display:inline}
+.rectangle1 {
+    display:inline-block;
+    width: 13%;
+    height: 3.6%;
+    margin-left: 2%;
+    text-align: center;
+    align-self: center;
+    font-family: 'Adamina', serif;
+    background-color: rgba(255,191,255,0.5);
+    margin-bottom: 0.5%;
+    border: 1px solid rgb(255,204,128);
+    font-size: 150%;
+    margin-right: 1%;
+    font-weight: 400;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    text-shadow: 0 -1px 2px rgba(0,0,0,.2);
+    padding: .4em 1em;
+    outline: none;
+    border-radius: 3px;
+    box-shadow:
+            0 1px rgba(255,255,255,.2) inset,
+            0 3px 5px rgba(0,1,6,.5),
+            0 0 1px 1px rgba(0,1,6,.2);
+    transition: .2s ease-in-out;
+}
+.rectangle1:hover:not(:active) {
+    background: linear-gradient(rgb(223, 175, 235), rgb(220, 133, 220)) rgb(203, 94, 206);
+}
+.rectangle1:active {
+    top: 1px;
+    background: linear-gradient(rgba(118, 235, 185,0.5), rgba(86, 220, 45,0.5)) rgba(146, 206, 44,0.5);
+}
+ul.dropdown-inside {
+    list-style-type: none;
+}
+ul.dropdown-inside {
+    position: absolute;
+    left: -9999px;
+}
+a.rectangle1{
+    border: 0px;
+    margin: -2% 1px 0 -23.5%
+}
+div.rectangle1 {
+    display: inline;
+    float: left;
+    margin: 0 0px 0 1.5%;
+    background-color: rgba(255,191,255,0.5);
+}
+div.rectangle1:hover .dropdown-inside{
+    width: 15%;
+    margin-top: 1%;
+    padding: 0px 10px 5px;
+    display: block;
+    left: 0;
+}
+.dropdown-inside { background-color: rgba(255,191,255,0.5); width: 16%; margin: 0 1px 0 1.5%;}
+.dropdown-inside :hover { background-color: rgba(255,191,255,0.5); }
+
+.rectangle2 {
+    display:inline-block;
+    width: 10%;
+    height: 6%;
+    margin-left: 10%;
+    margin-right: 1%;
+    text-align: left;
+    align-self: center;
+    font-family: 'Adamina', serif;
+    background-color: rgba(255,191,255,0.5);
+    margin-bottom: 0.5%;
+    border: 1px solid rgb(255,204,128);
+    font-size: 150%;
+    font-weight: 400;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    text-shadow: 0 -1px 2px rgba(0,0,0,.2);
+    padding: .3em 1em;
+    outline: none;
+    border-radius: 3px;
+    box-shadow:
+            0 1px rgba(255,255,255,.2) inset,
+            0 3px 5px rgba(0,1,6,.5),
+            0 0 1px 1px rgba(0,1,6,.2);
+    transition: .2s ease-in-out;
+}
+.rectangle2:hover:not(:active) {
+    background: linear-gradient(rgb(223, 175, 235), rgb(220, 133, 220)) rgb(203, 94, 206);
+}
+.rectangle2:active {
+    top: 1px;
+    background: linear-gradient(rgba(118, 235, 185,0.5), rgba(86, 220, 45,0.5)) rgba(146, 206, 44,0.5);
+}
+.rectangle3 {
+    display:inline-block;
+    width: 15%;
+    height:6%;
+    margin-left: 0.5%;
+    margin-right: 1.15%;
+    text-align: center;
+    align-self: center;
+    font-family: 'Adamina', serif;
+    background-color: rgba(255,191,255,0.5);
+    margin-bottom: 0.5%;
+    border: 1px solid rgb(255,204,128);
+    font-size: 150%;
+    font-weight: 400;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    text-shadow: 0 -1px 2px rgba(0,0,0,.2);
+    padding: .3em 1em;
+    outline: none;
+    border-radius: 3px;
+    box-shadow:
+            0 1px rgba(255,255,255,.2) inset,
+            0 3px 5px rgba(0,1,6,.5),
+            0 0 1px 1px rgba(0,1,6,.2);
+    transition: .2s ease-in-out;
+    float: right;
+}
+.rectangle3:hover:not(:active) {
+    background: linear-gradient(rgb(223, 175, 235), rgb(220, 133, 220)) rgb(203, 94, 206);
+}
+.rectangle3:active {
+    top: 1px;
+    background: linear-gradient(rgba(118, 235, 185,0.5), rgba(86, 220, 45,0.5)) rgba(146, 206, 44,0.5);
+}
+
+.lastNews{
+    font-family: 'ABeeZee', sans-serif;
+    background-color: rgba(255,230,191,0.5);
+    text-align: center;
+    align-self: center;
+    border: 1px solid rgb(255,204,128);
+    font-size: 140%;
+    width: 14%;
+    height: 3.5%;
+    margin-left: 43%;
+    padding: 0.3%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+.o1 {display:inline;}
+.oo1{display:inline-block;width: 30%;height: 60%}
+.oo2{display:inline-block;width: 30%;height: 60%}
+.oo3{display:inline-block;width: 30%;height: 60%}
+.titleNews1{
+    box-sizing: border-box;
+    font-family: 'ABeeZee', sans-serif;
+    background-color: rgba(204,128,255,0.5);
+    border: 1px solid rgb(255,204,128);
+    text-align: center;
+    font-size: 2vh;
+    line-height: 2vh;
+    width: 90%;
+    height: 20%;
+    margin-left: 19%;
+    margin-top: 2%;
+    padding: 3% 0%;
+
+}
+.textNews1{
+    box-sizing: border-box;
+    font-family: 'ABeeZee', sans-serif;
+    background-color: rgba(255,191,255,0.5);
+    border: 1px solid rgb(255,204,128);
+    text-align: center;
+    align-self: center;
+    font-size: 100%;
+    line-height: 100%;
+    height: 70%;
+    width: 90%;
+    margin-left: 19%;
+    margin-top: 1%;
+    padding: 1% 2%
+}
+.showFull1 {
+    font-family:'ABeeZee', sans-serif;
+    background-color: rgba(255,230,191,0.5);
+    border: 1px solid rgba(255,204,128);
+    text-align: center;
+    align-self: center;
+    width: 19%;
+    height: 4.5%;
+    font-size: 80%;
+    margin-left:90%;
+    display:inline-block;
+    margin-right: 0.5%;
+    margin-bottom: 0.5%;
+    font-weight: 400;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    text-shadow: 0 -1px 2px rgba(0,0,0,.2);
+    padding: .3em 1em;
+    outline: none;
+    border-radius: 3px;
+    box-shadow:
+            0 1px rgba(255,255,255,.2) inset,
+            0 3px 5px rgba(0,1,6,.5),
+            0 0 1px 1px rgba(0,1,6,.2);
+    transition: .2s ease-in-out;
+}
+.showFull1:hover:not(:active) {
+    background: linear-gradient(rgb(223, 175, 235), rgb(220, 133, 220)) rgb(203, 94, 206);
+}
+.showFull1:active {
+    top: 1px;
+    background: linear-gradient(rgba(118, 235, 185,0.5), rgba(86, 220, 45,0.5)) rgba(146, 206, 44,0.5);
+}
+.nextPage {
+    color: black;
+    width: 14%;
+    height: 4%;
+    text-align:center;
+    border: 1px solid rgb(255,204,128);
+    position: center;
+    margin-left: 43%;
+    background-color: rgba(255,191,255,0.5);
+    align-self: center;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    font-family:'ABeeZee', sans-serif;
+    font-size: 80%;
+    display:inline-block;
+    margin-right: 0.5%;
+    font-weight: 400;
+    text-decoration: none;
+    text-shadow: 0 -1px 2px rgba(0,0,0,.2);
+    padding: .3em 1em;
+    outline: none;
+    border-radius: 3px;
+    box-shadow:
+            0 1px rgba(255,255,255,.2) inset,
+            0 3px 5px rgba(0,1,6,.5),
+            0 0 1px 1px rgba(0,1,6,.2);
+    transition: .2s ease-in-out;
+}
+.nextPage:hover:not(:active) {
+    background: linear-gradient(rgb(223, 175, 235), rgb(220, 133, 220)) rgb(203, 94, 206);
+}
+.nextPage:active {
+    top: 1px;
+    background: linear-gradient(rgba(118, 235, 185,0.5), rgba(86, 220, 45,0.5)) rgba(146, 206, 44,0.5);
+}
+.footer {
+    box-sizing: border-box;
+    color: black;
+    width: 14%;
+    height:10%;
+    text-align:center;
+    padding: 1px;
+    position: center;
+    margin-left: 43%;
+    margin-bottom:0;
+}
+.footer p {
+    background: rgba(255,191,255,0.5);
+    padding: 5px 5px;
+    font-family: 'ABeeZee', sans-serif;
+    font-size: 12px;
+    border: 1px solid rgb(255,204,128);
+}
+@media screen and (max-width: 1600px) {
+    .title {
+        font-size: 150%;
+        height: 5%;
+    }
+
+    .rectangle1 {
+        height: 4.5%;
+        font-size: 130%;
+        margin-left: -10%;
+    }
+
+    .dropdown-inside {
+        font-size: 10px;
+        padding-right: 0px;
+        width: 11%;
+    }
+    .tag{ margin-left:3%;width: 16%;}
+    .date{width:16%;margin-left:3%}
+    .author{width:16%;margin-left:3%}
+    .rectangle2 {
+        margin-left: 2% ;
+        width: 8%;
+        text-align: left ;
+        padding-left: 1%;
+        font-size: 130%;
+    }
+
+    .rectangle3 {
+        width: 10%;
+        font-size:130%;
+    }
+
+    .rectangles {
+        font-size: 50%;
+    }
+
+    .lastNews {
+        font-size: 100%;
+        width: 20%;
+        margin-left: 40%;
+    }
+
+    .titleNews1 {
+        font-size: 60%;
+        height: 30%;
+    }
+
+    .textNews1 {
+        font-size: 60%;
+        height: 70%;
+    }
+
+    .showFull1 {
+        width: 40%;
+        height: 6%;
+        font-size: 10px;
+        margin-left: 65%;
+    }
+
+    .nextPage {
+        font-size: 11px;
+        margin-left: 37.5%;
+        width: 25%;
+    }
+
+    .footer {
+        margin-left: 25%;
+        width: 50%;
+    }
+}
+    @media screen and (max-width: 750px) {
+        .title {
+            font-size: 150%;
+            height: 5%;
+        }
+        .rectangle1 {
+            height: 4.5%;
+            font-size: 100%;
+            margin-left: -10%;
+        }
+
+        .dropdown-inside {
+            font-size: 10px;
+            padding-right: 0px;
+            width: 11%;
+        }
+        .tag{ margin-left:2%;width: 14%;}
+        .date{width:14%;margin-left:2%}
+        .author{width:14%;margin-left:2%}
+        .rectangle2 {
+            margin-left: 2% ;
+            width: 8%;
+            text-align: left ;
+            padding-left: 1%;
+        }
+
+        .rectangle3 {
+            width: 10%;
+        }
+
+        .rectangles {
+            font-size: 40%;
+        }
+        .lastNews {
+            font-size: 80%;
+            width: 20%;
+            margin-left: 40%;
+        }
+
+        .titleNews1 {
+            font-size: 40%;
+            height: 30%;
+        }
+
+        .textNews1 {
+            font-size: 33%;
+            height: 50%;
+        }
+
+        .showFull1 {
+            width: 50%;
+            height: 6%;
+            font-size: 8px;
+            margin-left: 50%;
+        }
+
+        .nextPage {
+            font-size: 9px;
+            margin-left: 37.5%;
+            width: 25%;
+        }
+
+        .footer {
+            margin-left: 25%;
+            width: 50%;
+        }
+    }
