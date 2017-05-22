@@ -1,5 +1,5 @@
-let data = (function () {
-    // let articles = [
+const data = (function () {
+    // let Articles = [
     //     {
     //         "id": "1490276250638",
     //         "title": "Всплеск эмоций в полете танца: чувственные рисунки прекрасных балерин",
@@ -69,28 +69,26 @@ let data = (function () {
     const fillArray = (arr) => {
         articles = arr;
         articles.forEach(item => item.id = item._id);
-
     };
 
     /* if (localStorage.getItem('data'))
-     articles = JSON.parse(localStorage.getItem('data'));
-     else localStorage.setItem('data', JSON.stringify(articles));*/
+     Articles = JSON.parse(localStorage.getItem('data'));
+     else localStorage.setItem('data', JSON.stringify(Articles));*/
 
-    // for (article of articles) {
+    // for (article of Articles) {
     //     article.createdAt = new Date(article.createdAt);
     //     article.author = article.author.trim();
     // }
-    // //articlesBin = JSON.parse(localStorage.getItem('bin')) || [];
-    // for (article of articles) {
+    // //ArticlesBin = JSON.parse(localStorage.getItem('bin')) || [];
+    // for (article of Articles) {
     //     article.createdAt = new Date(article.createdAt);
     // }
 
-    let tags = new Set();
+    const tags = new Set();
 
     function fillTags() {
         for (let i = 0; i < articles.length; i++) {
-            for (tag of articles[i].tags)
-                tags.add(tag);
+            for (tag of articles[i].tags) { tags.add(tag); }
         }
     }
 
@@ -134,8 +132,8 @@ let data = (function () {
     }
 
     /* function pushToLocalStorage() {
-     localStorage.setItem('data', JSON.stringify(articles));
-     localStorage.setItem('bin', JSON.stringify(articlesBin));
+     localStorage.setItem('data', JSON.stringify(Articles));
+     localStorage.setItem('bin', JSON.stringify(ArticlesBin));
      }
 
      window.addEventListener("beforeunload", function (e) {
@@ -149,7 +147,7 @@ let data = (function () {
 
     function validateArticle(article) {
         if (article === null || article === undefined) {
-            return false
+            return false;
         }
         if ((typeof article.id === 'string') && (typeof article.title === 'string' && article.title.length <= 100 && article.title !== '')
             && (typeof article.summary === 'string' && article.summary.length <= 200 && article.summary !== '')
@@ -161,7 +159,7 @@ let data = (function () {
 
     function addArticle(article) {
         if (article === null || article === undefined) {
-            return false
+            return false;
         }
         if (validateArticle(article) === true) {
             articles.push(article);
@@ -172,22 +170,18 @@ let data = (function () {
     }
 
     function editArticle(id, article) {
-        outdatedArticle = articles.find(function (a) {
-            return a.id === id;
-        });
+        outdatedArticle = articles.find((a) => a.id === id);
 
         if (!outdatedArticle) {
             return false;
         }
-        let newArticle = Object.assign(outdatedArticle, article);
+        const newArticle = Object.assign(outdatedArticle, article);
 
         if (!validateArticle(newArticle)) {
             return false;
         }
 
-        articles.map(function (a) {
-            return a.id !== id ? a : newArticle;
-        });
+        articles.map((a) => a.id !== id ? a : newArticle);
 
         httpModel.editArticle(id, article);
         return true;
@@ -199,7 +193,7 @@ let data = (function () {
 
         let articlesSlice = articles.slice();
 
-        articlesSlice.sort(function (a, b) {
+        articlesSlice.sort((a, b) => {
             if (a.createdAt > b.createdAt) return -1;
             if (a.createdAt < b.createdAt) return 1;
             return 0;
@@ -207,72 +201,62 @@ let data = (function () {
 
         if (filterConfig) {
             if (filterConfig.author) {
-                articlesSlice = articlesSlice.filter(function (a) {
-                    return filterConfig.author === a.author;
-                });
+                articlesSlice = articlesSlice.filter((a) => filterConfig.author === a.author);
             }
 
             if (filterConfig.createdAt) {
                 filterConfig.createdAt = new Date(filterConfig.createdAt);
-                articlesSlice = articlesSlice.filter(function (a) {
-                    return filterConfig.createdAt <= a.createdAt;
-                });
+                articlesSlice = articlesSlice.filter((a) => filterConfig.createdAt <= a.createdAt);
             }
             if (filterConfig.tags) {
-                articlesSlice = articlesSlice.filter(function (a) {
-                    let intersection = filterConfig.tags.filter(function (tag) {
-                        return a.tags.indexOf(tag) !== -1;
-                    });
+                articlesSlice = articlesSlice.filter((a) => {
+                    const intersection = filterConfig.tags.filter((tag) => a.tags.indexOf(tag) !== -1);
                     return intersection.length > 0;
                 });
             }
-
         }
         return articlesSlice.slice(skip, Math.min(skip + top, articlesSlice.length));
     }
 
     return {
-        getArticle: getArticle,
-        getArticles: getArticles,
-        addArticle: addArticle,
-        editArticle: editArticle,
-        validateArticle: validateArticle,
-        removeTag: removeTag,
-        removeArticle: removeArticle,
-        addTag: addTag,
+        getArticle,
+        getArticles,
+        addArticle,
+        editArticle,
+        validateArticle,
+        removeTag,
+        removeArticle,
+        addTag,
         getTags: tags,
         size: getSize,
         fillArray,
-        fillTags
+        fillTags,
     };
-})();
+}());
 
 function buttonsEvent(event) {
     if (event.target.classList.contains('showFull1')) {
-
-        let post = event.currentTarget.parentNode;
-        let article = data.getArticle(post.id);
+        const post = event.currentTarget.parentNode;
+        const article = data.getArticle(post.id);
 
         document.querySelector('.mainPage').style.display = 'none';
         document.querySelector('.detailNews').style.display = '';
         document.querySelector('.authorization').style.display = 'none';
         document.querySelector('.detail').id = post.id;
 
-        let detailed = document.querySelector('.detailNews');
+        const detailed = document.querySelector('.detailNews');
 
         detailed.querySelector('.rectangleeeeeeeeee').innerHTML = article.title;
         detailed.querySelector('img').src = article.image;
         detailed.querySelector('.textDetailNews').innerHTML = article.content;
-        detailed.querySelector('.tag1').innerHTML = 'Tags: ' + article.tags.join(' ');
+        detailed.querySelector('.tag1').innerHTML = `Tags: ${article.tags.join(' ')}`;
         detailed.querySelector('.dateCreated1').innerHTML = article.createdAt.toDateString();
-        detailed.querySelector('.author').innerHTML = 'Author:' + article.author;
-
+        detailed.querySelector('.author').innerHTML = `Author:${article.author}`;
     } else if (event.target.classList.contains('change')) {
-
         showAddForm();
-        let form = document.forms.create;
-        let post = event.currentTarget.parentNode;
-        let article = data.getArticle(post.id);
+        const form = document.forms.create;
+        const post = event.currentTarget.parentNode;
+        const article = data.getArticle(post.id);
 
         form.title.value = article.title;
         form.image.value = article.image;
@@ -285,15 +269,13 @@ function buttonsEvent(event) {
                 ready => {
                     showMainPage();
                     refresh();
-                }
-            )
+                },
+            );
         };
 
         document.querySelector('.btn-add').innerText = 'Edit Post';
-
     } else if (event.target.classList.contains('deleteNews')) {
-
-        let post = event.currentTarget.parentNode;
+        const post = event.currentTarget.parentNode;
         data.removeArticle(post.id);
         document.querySelector('.detailNews').style.display = 'none';
         document.querySelector('.mainPage').style.display = '';
@@ -301,19 +283,19 @@ function buttonsEvent(event) {
     }
 }
 
-let domManagement = (function () {
-    let template = document.getElementById('template');
-    let content = document.querySelector('div.content');
+const domManagement = (function () {
+    const template = document.getElementById('template');
+    const content = document.querySelector('div.content');
 
     function makeHTML(article) {
-        let copy = template.querySelector('.post').cloneNode(true);
+        const copy = template.querySelector('.post').cloneNode(true);
         copy.id = article.id;
         copy.querySelector('.titleNews1').innerText = article.title;
         copy.querySelector('.textNews1').innerText = article.summary;
-        copy.querySelector('.dateCreated').innerText = article.createdAt.getHours() + ':' + article.createdAt.getMinutes() + ' ' + article.createdAt.toDateString();
-        copy.querySelector('.authorr').innerText = 'Author: ' + article.author;
-        copy.querySelector('.tag2').innerText = 'Tags: ' + article.tags.join(' ');
-        //copy.querySelector('img').src = article.image;
+        copy.querySelector('.dateCreated').innerText = `${article.createdAt.getHours()}:${article.createdAt.getMinutes()} ${article.createdAt.toDateString()}`;
+        copy.querySelector('.authorr').innerText = `Author: ${article.author}`;
+        copy.querySelector('.tag2').innerText = `Tags: ${article.tags.join(' ')}`;
+        // copy.querySelector('img').src = article.image;
         copy.querySelector('.newbuttons').addEventListener('click', buttonsEvent);
         return copy;
     }
@@ -330,25 +312,25 @@ let domManagement = (function () {
     }
 
     return {
-        displayArticles: displayArticles
-    }
-})();
+        displayArticles,
+    };
+}());
 
-//let user = null;
+// let user = null;
 
 function authorize(author) {
-    let button = document.getElementById('authorize');
+    const button = document.getElementById('authorize');
     if (button) {
         showMainPage();
         showButthons();
         button.innerText = 'Quit';
-        document.querySelector('.hi').textContent = 'Hi, ' + author;
+        document.querySelector('.hi').textContent = `Hi, ${author}`;
     }
 }
 
 
 function deAuthorize() {
-    let button = document.getElementById('authorize');
+    const button = document.getElementById('authorize');
     if (button) {
         button.innerText = 'Authorization';
         document.querySelector('.hi').textContent = 'Hi, visitor';
@@ -408,7 +390,7 @@ function showAddForm() {
 
     document.querySelector('.btn-add').innerText = 'Add Post';
 
-    let form = document.forms.create;
+    const form = document.forms.create;
 
     form.title.value = '';
     form.image.value = '';
@@ -426,22 +408,17 @@ function showMainPage() {
 
 function hideButtons() {
     let allChange = document.querySelectorAll('.change');
-    for (let i = 0; i < allChange.length; i++)
-        allChange[i].style.display = 'none';
+    for (let i = 0; i < allChange.length; i++) { allChange[i].style.display = 'none'; }
     allChange = document.querySelectorAll('.deleteNews');
-    for (let i = 0; i < allChange.length; i++)
-        allChange[i].style.display = 'none';
+    for (let i = 0; i < allChange.length; i++) { allChange[i].style.display = 'none'; }
     document.getElementById('add-post').style.display = 'none';
-
 }
 
 function showButthons() {
     let allChange = document.querySelectorAll('.change');
-    for (let i = 0; i < allChange.length; i++)
-        allChange[i].style.display = '';
+    for (let i = 0; i < allChange.length; i++) { allChange[i].style.display = ''; }
     allChange = document.querySelectorAll('.deleteNews');
-    for (let i = 0; i < allChange.length; i++)
-        allChange[i].style.display = '';
+    for (let i = 0; i < allChange.length; i++) { allChange[i].style.display = ''; }
     document.getElementById('add-post').style.display = '';
 }
 
@@ -468,7 +445,7 @@ let currentFilter = {};
 let prevArray = [];
 let currentPage = 1;
 function showMoreArticles() {
-    let articles = data.getArticles(0, currentPage * 3, currentFilter);
+    const articles = data.getArticles(0, currentPage * 3, currentFilter);
     domManagement.displayArticles(articles);
     if (articles.length <= prevArray.length + 1) {
         document.querySelector('.bottom .nextPage').style.display = 'none';
@@ -478,22 +455,22 @@ function showMoreArticles() {
 }
 
 function refresh() {
-    let articles = data.getArticles(0, currentPage * 3, currentFilter);
+    const articles = data.getArticles(0, currentPage * 3, currentFilter);
     domManagement.displayArticles(articles);
 }
 
 function addPost() {
     return new Promise(resolve => {
-        let form = document.forms.create;
-        let article = {
-            id: '' + new Date().getTime(),
+        const form = document.forms.create;
+        const article = {
+            id: `${new Date().getTime()}`,
             title: form.title.value,
             summary: form.summary.value,
             createdAt: new Date(),
-            author: document.querySelector('.hi').innerHTML.replace("Hi, ", ''),
+            author: document.querySelector('.hi').innerHTML.replace('Hi, ', ''),
             content: form.content.value,
             tags: form.tag.value.split(' '),
-            image: form.image.value
+            image: form.image.value,
         };
         if (data.addArticle(article)) {
             document.querySelector('.bottom .nextPage').style.display = '';
@@ -506,16 +483,16 @@ function addPost() {
 
 function editPost(id) {
     return new Promise(resolve => {
-        let form = document.forms.create;
-        let article = {
-            id: id,
+        const form = document.forms.create;
+        const article = {
+            id,
             title: form.title.value,
             summary: form.summary.value,
             createdAt: new Date(),
-            author: document.querySelector('.hi').innerHTML.replace("Hi, ", ''),
+            author: document.querySelector('.hi').innerHTML.replace('Hi, ', ''),
             content: form.content.value,
             tags: form.tag.value.split(' '),
-            image: form.image.value
+            image: form.image.value,
         };
         if (data.editArticle(id, article)) {
             document.querySelector('.bottom .nextPage').style.display = '';
@@ -552,59 +529,57 @@ const httpModel = (function () {
     function getAllArticles() {
         return new Promise((resolve, reject) => {
             const xhr = new XMLHttpRequest();
-            xhr.open('GET', '/articles');
+            xhr.open('GET', '/Articles');
             xhr.onload = () => {
-                if (xhr.status === 200)
+                if (xhr.status === 200) {
                     resolve(JSON.parse(xhr.responseText, (key, value) => {
                         if (key === 'createdAt') return new Date(value);
                         if (key === 'author') return value.trim();
                         return value;
                     }));
+                }
             };
             xhr.onerror = () => reject(new Error('getAllArticles crashed'));
             xhr.send();
-        })
+        });
     }
 
     function editArticle(id, article) {
         return new Promise((resolve, reject) => {
             const xhr = new XMLHttpRequest();
-            xhr.open('PUT', '/article/' + id);
+            xhr.open('PUT', `/article/${id}`);
             xhr.setRequestHeader('content-type', 'application/json');
             xhr.onload = () => {
-                if (xhr.status === 200)
-                    resolve(xhr.status);
+                if (xhr.status === 200) { resolve(xhr.status); }
             };
             xhr.onerror = () => reject(new Error('editArticle crashed'));
             xhr.send(JSON.stringify(article));
-        })
+        });
     }
 
     function removeArticle(id) {
         return new Promise((resolve, reject) => {
             const xhr = new XMLHttpRequest();
-            xhr.open('DELETE', '/article/' + id);
+            xhr.open('DELETE', `/article/${id}`);
             xhr.onload = () => {
-                if (xhr.status === 200)
-                    resolve(xhr.status);
+                if (xhr.status === 200) { resolve(xhr.status); }
             };
             xhr.onerror = () => reject(new Error('getAllArticles crashed'));
             xhr.send();
-        })
+        });
     }
 
     function addArticle(article) {
         return new Promise((resolve, reject) => {
             const xhr = new XMLHttpRequest();
-            xhr.open('POST', '/articles');
+            xhr.open('POST', '/Articles');
             xhr.setRequestHeader('content-type', 'application/json');
             xhr.onload = () => {
-                if (xhr.status === 200)
-                    resolve(xhr.status);
+                if (xhr.status === 200) { resolve(xhr.status); }
             };
             xhr.onerror = () => reject(new Error('getAllArticles crashed'));
             xhr.send(JSON.stringify(article));
-        })
+        });
     }
 
     function addArticleBin(article) {
@@ -613,12 +588,11 @@ const httpModel = (function () {
             xhr.open('POST', '/articleBin');
             xhr.setRequestHeader('content-type', 'application/json');
             xhr.onload = () => {
-                if (xhr.status === 200)
-                    resolve(xhr.status);
+                if (xhr.status === 200) { resolve(xhr.status); }
             };
             xhr.onerror = () => reject(new Error('getAllArticles crashed'));
             xhr.send(JSON.stringify(article));
-        })
+        });
     }
 
     return {
@@ -626,8 +600,8 @@ const httpModel = (function () {
         editArticle,
         removeArticle,
         getAllArticles,
-        addArticleBin
-    }
+        addArticleBin,
+    };
 }());
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -637,6 +611,6 @@ document.addEventListener('DOMContentLoaded', () => {
             data.fillTags();
             showMoreArticles();
             authorization.getUsername().then(username => authorize(username), resolve => deAuthorize());
-        }
+        },
     );
 });

@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+
 const db = mongoose.createConnection('mongodb://localhost/dasha');
 
 db.on('error', err => console.log('connection error to DB.', err.message));
@@ -29,6 +30,6 @@ const users = new mongoose.Schema({
     password: String
 });
 
-module.exports.articles = db.model('articles', articles);
+module.exports.articles = db.model('Articles', articles);
 module.exports.articlesBin = db.model('articlesbin', articlesBin);
-module.exports.users = db.model('users', users);
+module.exports.users = db.model('Users', users);

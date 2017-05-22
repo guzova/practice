@@ -1,14 +1,16 @@
 const express = require('express');
+
 const app = express();
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const users = require('./db.js').users;
-const articles = require('./db.js').articles;
-const articlesBin = require('./db.js').articlesBin;
+const Users = require('./db.js').users;
+const Articles = require('./db.js').articles;
+const ArticlesBin = require('./db.js').articlesBin;
 const session = require('express-session');
-const sessionStore = require('connect-mongo')(session);
-const store = new sessionStore({url: 'mongodb://localhost/dasha'});
+const SessionStore = require('connect-mongo')(session);
+
+const store = new SessionStore({url: 'mongodb://localhost/dasha'});
 app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -16,7 +18,7 @@ app.use(session({
     secret: 'secret',
     resave: false,
     saveUninitialized: true,
-    store: store
+    store
 }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -26,52 +28,30 @@ app.get('/', (req, res) => {
 });
 
 app.get('/articles', (req, res) => {
-    articles.find((err, data) => !err ? res.json(data) : res.sendStatus(500));
+    Articles.find((error, articles) => !error ? res.json(articles) : res.sendStatus(500));
 });
 
 app.get('/article/:id', (req, res) => {
-    articles.findById(req.body.id, (err, data) => !err ? res.json(data) : res.sendStatus(500));
+    Articles.findById(req.params.id, (err, data) => !err ? res.json(data) : res.sendStatus(500));
 });
 
 app.post('/articles', (req, res) => {
-    const article = {
-        title: req.body.title,
-        summary: req.body.summary,
-        createdAt: req.body.createdAt,
-        author: req.body.author,
-        image: req.body.image,
-        content: req.body.content,
-        tags: req.body.tags
-    };
-    new articles(article).save(err => !err ? res.sendStatus(200) : res.sendStatus(500));
+    new Articles(req.body).save(err => !err ? res.sendStatus(200) : res.sendStatus(500));
 });
 
 app.put('/article/:id', (req, res) => {
-    let editArticle = {};
-    if (req.body.title) {
-        editArticle.title = req.body.title;
-    }
-    if (req.body.summary) {
-        editArticle.summary = req.body.summary;
-    }
-    if (req.body.image) {
-        editArticle.image = req.body.image;
-    }
-    if (req.body.content) {
-        editArticle.content = req.body.content;
-    }
-    articles.findByIdAndUpdate(req.params.id, {$set: editArticle}, err => !err ? res.sendStatus(200) : res.sendStatus(500));
+    Articles.findByIdAndUpdate(req.params.id, {$set: req.body}, err => !err ? res.sendStatus(200) : res.sendStatus(500));
 });
 
 app.post('/articleBin', (req, res) => {
     const article = req.body;
     article._id = article.id;
     delete article.id;
-    new articlesBin(article).save(err => !err ? res.sendStatus(200) : res.sendStatus(500));
+    new ArticlesBin(article).save(err => !err ? res.sendStatus(200) : res.sendStatus(500));
 });
 
 app.delete('/article/:id', (req, res) => {
-    articles.findByIdAndRemove(req.params.id, err => !err ? res.sendStatus(200) : res.sendStatus(500));
+    Articles.findByIdAndRemove(req.params.id, err => !err ? res.sendStatus(200) : res.sendStatus(500));
 });
 
 passport.serializeUser((user, done) => done(null, user));
@@ -81,15 +61,14 @@ passport.deserializeUser((user, done) => {
     done(error, user)
 });
 
-passport.use('login', new LocalStrategy({
-        passReqToCallback: true
-    },
+passport.use('login', new LocalStrategy({passReqToCallback: true},
     (req, username, password, done) => {
-        users.findOne({username}, (err, user) => {
-            if (err)
-                done(err);
+        Users.findOne({username}, (err, user) => {
+            if (err) {
+                return done(err);
+            }
             if (!user) {
-                console.log('User Not Found with username ' + username);
+                console.log(`User Not Found with username ${username}`);
                 return done(null, false);
             }
             if (password !== user.password) {

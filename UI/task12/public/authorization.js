@@ -1,8 +1,7 @@
 /**
  * Created by GE70 on 21.03.2017.
  */
-var authorization = (function () {
-
+const authorization = (function () {
     function logInEvent() {
         const user = {
             username: document.forms.auth.login.value,
@@ -13,7 +12,7 @@ var authorization = (function () {
                 authorize(name);
             },
             error => alert('incorrect!')
-        )
+        );
     }
 
     function login(user) {
@@ -24,7 +23,7 @@ var authorization = (function () {
             xhr.onload = () => xhr.status === 200 ? resolve(xhr.responseText) : reject();
             xhr.onerror = () => reject();
             xhr.send(JSON.stringify(user));
-        })
+        });
     }
 
     function logout() {
@@ -34,7 +33,7 @@ var authorization = (function () {
             xhr.onload = () => xhr.status === 200 ? resolve() : reject();
             xhr.onerror = () => resolve();
             xhr.send();
-        })
+        });
     }
 
     function getUsername() {
@@ -44,35 +43,12 @@ var authorization = (function () {
             xhr.onload = () => xhr.status === 200 ? resolve(xhr.responseText) : reject();
             xhr.onerror = () => reject();
             xhr.send();
-        })
+        });
     }
 
     return {
         getUsername,
         logout,
         event: logInEvent
-    }
-})();
-
-/*function logIn() {
- var name = document.getElementById("autinput").value;
- var password = document.getElementById("autinput1").value;
- if (userModel.checkForLogIn(name, password)) {
- user = name;
- localStorage.setItem("username", user);
- window.location = "index.html";
- }
- else {
- document.querySelector('.maintape').style.display = 'none';
- document.querySelector('#add-news').style.display = 'none';
- document.querySelector('.authorization').style.display = 'none';
- document.querySelector('.error').style.display = '';
- document.querySelector('.newspage').style.display = 'none';
- }
- }
-
- function quit() {
- localStorage.removeItem("username");
- user = null;
- authorize();
- }*/
+    };
+}());
